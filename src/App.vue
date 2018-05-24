@@ -5,9 +5,17 @@
 </template>
 
 <script>
+
+import Vue from 'vue'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
+Vue.use(VueAxios, axios);
+Vue.config.productionTip = false
+
 import ShowTopic from './components/ShowTopic.vue'
 
-export default {
+var App = Vue.extend({
   name: 'Senph',
   components: {
     ShowTopic
@@ -15,16 +23,12 @@ export default {
   data: function () { return {
     topicUrl: '',
   }},
-  created: function() {
-    const configElement = document.getElementById( 'senph-config' );
-    if (configElement === null) {
-      return
-    }
-    const config = JSON.parse( configElement.innerHTML );
-    if (config.topicUrl) {
-      this.topicUrl = config.topicUrl;
-    }
-  }
-}
+  beforeMount() {
+    this.topicUrl = this.$el.dataset.topicUrl;
+  },
+});
+
+export default App;
+
 </script>
 

@@ -30,13 +30,17 @@ export default {
   },
   methods: {
     fetchItems(){
-      this.axios.get(this.topicUrl).then((response) => {
-        this.topic = response.data;
-      });
+      if (this.topicUrl) {
+        this.axios.get(this.topicUrl).then((response) => {
+          this.topic = response.data;
+        });
+      }
     }
   },
   data: function () { return {
-    topic: {}
+    topic: {
+      comments: []
+    }
   }}
 }
 </script>
