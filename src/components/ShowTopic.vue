@@ -1,13 +1,15 @@
 <template>
-  <div>
-    <h2>{{ topic.url }}</h2>
-    <ul>
+  <div class="senph-topic">
+    <ul v-if="topic.comments.length > 0">
       <ShowComment
         v-for="c in topic.comments"
         :comment="c"
         :key="c.ident"
       />
     </ul>
+    <div v-else class="senph-no-comments">
+      No comments yet.
+    </div>
   </div>
 </template>
 
