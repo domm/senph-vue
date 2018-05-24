@@ -12,15 +12,30 @@
 </template>
 
 <script>
-import ShowComment from './ShowComment.vue'
+import ShowComment from './ShowComment.vue';
+
+
 export default {
   name: 'ShowTopic',
   components: {
     ShowComment
   },
   props: [
-    'topic'
-  ]
+    'topicUrl'
+  ],
+  created: function(){
+    this.fetchItems();
+  },
+  methods: {
+    fetchItems(){
+      this.axios.get(this.topicUrl).then((response) => {
+        this.topic = response.data;
+      });
+    }
+  },
+  data: function () { return {
+    topic: {}
+  }}
 }
 </script>
 
